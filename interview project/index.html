@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function validateForm() {
+            var firstName = document.forms["signupForm"]["firstName"].value;
+            var lastName = document.forms["signupForm"]["lastName"].value;
+            var email = document.forms["signupForm"]["email"].value;
+            var company = document.forms["signupForm"]["company"].value;
+            var dob = document.forms["signupForm"]["dob"].value;
+            var location = document.forms["signupForm"]["location"].value;
+            var password = document.forms["signupForm"]["password"].value;
+            var confirmPassword = document.forms["signupForm"]["confirmPassword"].value;
+
+            if (firstName === "") {
+                alert("First Name is required.");
+                return false;
+            }
+            if (firstName.length > 200) {
+                alert("First Name must be less than 200 characters.");
+                return false;
+            }
+            if (lastName !== "" && lastName.length > 200) {
+                alert("Last Name must be less than 200 characters.");
+                return false;
+            }
+            var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailRegex.test(email)) {
+                alert("Email is not in a valid format.");
+                return false;
+            }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="card">
+    <form class= "form"name="signupForm" action="submit.php" onsubmit="return validateForm()" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required maxlength="200">
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" maxlength="200">
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="company">Company:</label>
+        <input type="text" id="company" name="company" required>
+        <br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
